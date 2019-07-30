@@ -1,0 +1,50 @@
+type Query {
+    saludo(name:String!):String!
+}
+type Query {
+    reporteByCat(name:String!):Report!
+}
+
+type Query {
+    getAllReports:[Report]
+}
+
+type Mutation {
+    createReport(data:inputReport!):Report
+}
+
+type Mutation {
+    createUsers(data:inputUser!):User
+}
+
+type Report {
+    id:ID
+    category:String!
+    description:String!
+    location:String!
+    createdAt:String!
+    user:User!
+}
+
+type User {
+    id: ID
+    name:String!
+    email:String!
+    password:String!
+    age:Int!
+}
+
+input inputReport {
+    category:String!
+    description:String!
+    location:String!
+    createdAt:String!
+    user:ID
+}
+
+input inputUser {
+    name:String!
+    email:String!
+    password:String!
+    age:Int!
+}
