@@ -18,17 +18,21 @@ mongoose.connect(process.env.MONGOURI,
     }
 );
 
-const { getAllReports, reporteByCat } = require('./resolvers/Querys');
-const { createReport, createUsers } = require('./resolvers/Mutations');
+const { getAllReports, reporteByCat, reporteById, userByEmail, userById } = require('./resolvers/Querys');
+const { createReport, createUsers, login } = require('./resolvers/Mutations');
 
 const resolvers = {
   Query: {
     getAllReports,
-    reporteByCat
+    reporteByCat,
+    reporteById,
+    userByEmail,
+    userById
   },
   Mutation: {
     createReport,
-    createUsers
+    createUsers,
+    login
   }
 };
 

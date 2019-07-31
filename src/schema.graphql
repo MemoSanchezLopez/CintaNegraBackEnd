@@ -1,20 +1,16 @@
 type Query {
     saludo(name:String!):String!
-}
-type Query {
-    reporteByCat(name:String!):Report!
-}
-
-type Query {
+    reporteByCat(name:String!):[Report]
+    reporteById(id:ID):Report!
     getAllReports:[Report]
+    userByEmail(name:String!):User!
+    userById(id:ID):User!
 }
 
 type Mutation {
     createReport(data:inputReport!):Report
-}
-
-type Mutation {
     createUsers(data:inputUser!):User
+    login(data:inputLogin!):Token
 }
 
 type Report {
@@ -24,6 +20,11 @@ type Report {
     location:String!
     createdAt:String!
     user:User!
+}
+
+type Token {
+    token:String!
+    message:String!
 }
 
 type User {
@@ -47,4 +48,9 @@ input inputUser {
     email:String!
     password:String!
     age:Int!
+}
+
+input inputLogin {
+    email:String!
+    password:String!
 }
