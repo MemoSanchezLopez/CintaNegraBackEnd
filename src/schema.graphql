@@ -1,10 +1,12 @@
+directive @auth on FIELD_DEFINITION | FIELD
+
 type Query {
     saludo(name:String!):String!
-    reporteByCat(name:String!):[Report]
-    reporteById(id:ID):Report!
-    getAllReports:[Report]
-    userByEmail(name:String!):User!
-    userById(id:ID):User!
+    reporteByCat(name:String!):[Report] @auth
+    reporteById(id:ID):Report! @auth
+    getAllReports:[Report] @auth 
+    userByEmail(name:String!):User! @auth
+    userById(id:ID):User! @auth
 }
 
 type Mutation {
