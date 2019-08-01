@@ -1,4 +1,5 @@
 directive @auth on FIELD_DEFINITION | FIELD
+scalar Upload
 
 type Query {
     saludo(name:String!):String!
@@ -13,6 +14,7 @@ type Mutation {
     createReport(data:inputReport!):Report
     createUsers(data:inputUser!):User
     login(data:inputLogin!):Token
+    addPhoto(photo:Upload!, id:ID):String
 }
 
 type Report {

@@ -1,6 +1,7 @@
 const Report = require('../models/report');
 const Users = require('../models/Users');
 const authenticated = require('../utils/authenticated');
+const storage = require('../utils/storage')
 
 const createReport = async (root, args) => {
   let newReport = new Report({
@@ -35,8 +36,21 @@ const login = async(root, args) => {
   };
 }
 
+const addPhoto = async(root, args) => {
+  console.log(args);
+  if(args.photo){
+    const { createReadStream } = await args.photo;
+    const stream = createReadStream();
+    console.log('stream ===> ',stream);
+    const url = await storage({stream});
+    await Users.findByIdAndUpdate(args.id, {img: url.url});
+    return url.url;
+  }
+}
+
 module.exports = {
     createReport,
     createUsers,
-    login
+    login,
+    addPhoto
 }
